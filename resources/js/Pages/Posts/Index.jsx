@@ -2,7 +2,8 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 
-export default function Dashboard({ posts }) { // Destructure posts from props
+export default function Dashboard({ posts }) {
+    // Destructure posts from props
     return (
         <AuthenticatedLayout
             header={
@@ -17,22 +18,18 @@ export default function Dashboard({ posts }) { // Destructure posts from props
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-                        {posts && posts.length > 0 ? (
-                            posts.map((post) => (
-                                <div
-                                    className="p-6 text-gray-900 dark:text-gray-100"
-                                    key={post.id}
-                                >
-                                    {post.body}
-                                </div>
-                            ))
-                        ) : (
-                            <div className="p-6 text-gray-900 dark:text-gray-100">
-                                No posts available.
-                            </div>
-                        )}
-                    </div>
+                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800"></div>
+                    {posts.data.map((post) => {
+                        return (
+                            
+                            <div className="p-6 font-semibold" key={post.id}>
+                            <h3 className=" text-gray-700 dark:text-gray-300">{post.user.name}</h3>
+                            <p className="mt-1 text-gray-700 dark:text-gray-300">
+                                {post.body}
+                            </p>
+                        </div>
+                        );
+                    })}
                 </div>
             </div>
         </AuthenticatedLayout>
